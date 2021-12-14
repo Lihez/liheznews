@@ -6,7 +6,9 @@ var logger = require('morgan');
 var mysql = require('mysql');
 const session = require('express-session');
 var settings = require('./settings.json')
-var mysql = require('mysql')
+
+module.exports = {session: session };
+
 var connection = mysql.createConnection({
   host     : settings.sql.host,
   user     : settings.sql.user,
@@ -21,7 +23,7 @@ connection.connect((err)=> {
   console.log('MySQL veritabanına başarıyla bağlanıldı.'); 
 });
 
-module.exports = {session: session, con:connection };
+module.exports = {con:connection};
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
@@ -41,6 +43,7 @@ app.use(session({
   saveUninitialized: true
 }));
 
+
 app.use('/', indexRouter);
 app.use('/specialarea', adminRouter);
 
@@ -52,7 +55,7 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'product' ? err : {};
+  res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
   res.status(err.status || 500);

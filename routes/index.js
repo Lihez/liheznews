@@ -1,5 +1,6 @@
 var express = require('express');
-var {session,con} = require('../app')
+var {session} = require('../app')
+var {con} = require('../app')
 
 
 var router = express.Router();
