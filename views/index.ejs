@@ -1,11 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
-</html>
+<%- include('./partials/header.ejs', {}) %>
+<section class="section pt-5 mb-3">
+<div class="container">
+  <h2>Yeni Haberler</h2><br/>
+  <div class="row">
+  <% for(var i = 0; i < data.length; i++){ %>
+  <div class="col-md-3 mb-5 img"> 
+    <a href="/haber/<%= data[i].id %>">   
+      <img src="<%= data[i].thumbnail %>" class="card-img-top" alt="thumbnail">
+      <h5 class="position-absolute news-text text-light"><%= data[i].title %></h5>
+    </a>
+    </div>
+ <% } %>
+</div>
+</div>
+</section>
+
+<section class="section pt-5 mb-3">
+  <div class="container">
+    <h2>Spor Haberleri</h2><br/>
+    <div class="row">
+    <% for(var i = 0; i < spor.length; i++){ %>
+    <div class="col-md-3 mb-5 img"> 
+      <a href="/haber/<%= spor[i].id %>">   
+        <img src="<%= spor[i].thumbnail %>" class="card-img-top" alt="thumbnail">
+        <h5 class="position-absolute news-text text-light"><%= spor[i].title %></h5>
+      </a>
+      </div>
+   <% } %>
+  </div>
+  </div>
+  </section>
+<%- include('./partials/footer.ejs', {}) %>

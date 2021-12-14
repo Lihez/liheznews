@@ -1,8 +1,19 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+    margin-right: 5px;
 }
 
-a {
-  color: #00B7FF;
+.img {
+   transition: transform .2s;
+}
+
+.img:hover {
+    transform: scale(1.1);
+ }
+
+.news-text {
+    bottom:2px;
+    padding:6px;
+    text-shadow: black 2px 2px 2px
 }
