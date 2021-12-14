@@ -24,6 +24,7 @@ connection.connect((err)=> {
 module.exports = {session: session, con:connection };
 
 var indexRouter = require('./routes/index');
+var adminRouter = require('./routes/admin');
 var app = express();
 
 app.set('views', path.join(__dirname, 'views'));
@@ -37,10 +38,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'xAfeA23rop3mer3onrua3ebgrj3nr42kj3',
   resave: false,
-  saveUninitialized: true
-}));
+  saveUninitialized: true,
+  cookie: { secure: true }  
+}))
 
 app.use('/', indexRouter);
+app.use('/specialarea', adminRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
