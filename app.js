@@ -38,9 +38,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'xAfeA23rop3mer3onrua3ebgrj3nr42kj3',
   resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }  
-}))
+  saveUninitialized: true
+}));
 
 app.use('/', indexRouter);
 app.use('/specialarea', adminRouter);
