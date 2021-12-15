@@ -86,9 +86,18 @@ router.get('/haber/:id', async(req, res) => {
     });
 });
 
+const news = await new Promise((resolve, reject) => {
+  con.query(`SELECT * FROM news ORDER BY id DESC LIMIT 12`, function (err, result) {
+      if (err)
+          reject(err);
+      resolve(result);
+  });
+});
+
 res.render('haber', { 
   title: 'Haber - Lehiz News',
-  data: veri,
+  news: news,
+  data:veri
 });
 });
 

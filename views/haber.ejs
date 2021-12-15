@@ -1,7 +1,42 @@
 <%- include('./partials/header.ejs', {}) %>
-<section class="section mt-5">
-    <div class="container">
-
-    </div>
+<section class="section p-5">
+    <div class="container p-5">
+       <div class="btn btn-outline-dark shadow-lg" style="width: 100%;">
+           <h1 style="text-align: center; padding-top: 10px; padding-bottom: 10px;">Buraya Reklam Ver </h1>
+            <p>İletişim İçin: <b>lihezsoftware@protonmail.com</b></p>
+        </div>
+        </div>
 </section>
+
+<section class="section p-5">
+    <div class="container p-5">
+        <h1 align=center><%= data[0].title %></h1>
+        <img src="<%= data[0].thumbnail %>" style="width: 100%; height:50%">
+        <div class="news-div">
+        <div class="pt-5">
+            <p><b><%- data[0].content %></b></p>
+        </div>
+    </div>
+    <div class="btn btn-outline-dark shadow-lg pb-5 pt-5 mt-5" style="width: 40%;">
+        <h1 style="text-align: center; padding-top: 10px; padding-bottom: 10px;">Buraya Reklam Ver </h1>
+         <p>İletişim İçin: <b>lihezsoftware@protonmail.com</b></p>
+     </div>
+     </div>
+</section>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+<section class="section pt-5 mb-3 mt-5">
+    <div class="container">
+      <h2>İlgini Çekebilecek Haberler</h2><br/>
+      <div class="row">
+        <% for(var i = 0; i < news.length; i++){ %>
+            <div class="col-md-3 mb-5 img"> 
+              <a href="/haber/<%= news[i].id %>">   
+                <img src="<%= news[i].thumbnail %>" class="card-img-top" alt="thumbnail">
+                <h5 class="position-absolute news-text text-light"><%= news[i].title %></h5>
+              </a>
+              </div><br/>
+           <% } %>
+    </div>
+    </div>
+    </section>
 <%- include('./partials/footer.ejs', {}) %>

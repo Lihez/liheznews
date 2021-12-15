@@ -17,3 +17,9 @@
     padding:6px;
     text-shadow: black 2px 2px 2px
 }
+
+.news-div {
+    float:left;
+    width: 500px;
+    margin-right: 50px;
+}
