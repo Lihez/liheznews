@@ -7,7 +7,6 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
-  
   const veri = await new Promise((resolve, reject) => {
     con.query(`SELECT * FROM news ORDER BY id DESC LIMIT 12`, function (err, result) {
         if (err)
@@ -75,5 +74,23 @@ const dünya = await new Promise((resolve, reject) => {
     teknoloji:teknoloji
   });
 });
+
+
+router.get('/haber/:id', async(req, res) => {
+  var id = req.params.id;
+  const veri = await new Promise((resolve, reject) => {
+    con.query(`SELECT * FROM news WHERE id = ?`,[id] ,function (err, result) {
+        if (err)
+            reject(err);
+        resolve(result);
+    });
+});
+
+res.render('haber', { 
+  title: 'Haber - Lehiz News',
+  data: veri,
+});
+});
+
 
 module.exports = router;

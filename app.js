@@ -7,8 +7,6 @@ var mysql = require('mysql');
 const session = require('express-session');
 var settings = require('./settings.json')
 
-module.exports = {session: session };
-
 var connection = mysql.createConnection({
   host     : settings.sql.host,
   user     : settings.sql.user,
@@ -23,7 +21,7 @@ connection.connect((err)=> {
   console.log('MySQL veritabanına başarıyla bağlanıldı.'); 
 });
 
-module.exports = {con:connection};
+module.exports = {con:connection,session:session};
 
 var indexRouter = require('./routes/index');
 var adminRouter = require('./routes/admin');
@@ -37,12 +35,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.set('trust proxy', 1)
 app.use(session({
   secret: 'xAfeA23rop3mer3onrua3ebgrj3nr42kj3',
   resave: false,
   saveUninitialized: true
 }));
-
 
 app.use('/', indexRouter);
 app.use('/specialarea', adminRouter);

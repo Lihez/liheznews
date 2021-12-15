@@ -1,0 +1,17 @@
+<%- include('../partials/header.ejs', {}) %>
+<section class="section pt-5 mb-3">
+    <div class="container">
+        <h1>Haberler <button class="btn btn-outline-danger"><%= data[0].position %></button></h1>
+      <div class="row">
+      <% for(var i = 0; i < news.length; i++){ %>
+      <div class="col-md-3 mb-5 img"> 
+        <a href="/specialarea/dashboard/news/<%= news[i].id %>">   
+          <img src="<%= news[i].thumbnail %>" class="card-img-top" alt="thumbnail">
+          <h5 class="position-absolute news-text text-light"><%= news[i].title %></h5>
+        </a>
+        </div>
+     <% } %>
+    </div>
+    </div>
+    </section>
+<%- include('../partials/footer.ejs', {}) %>

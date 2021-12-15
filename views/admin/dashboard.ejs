@@ -1,7 +1,15 @@
 <%- include('../partials/header.ejs', {}) %>
 <section class="section mt-5">
     <div class="container">
-       <h1>Hoşgeldin <%= data[0].username %></h1> 
+       <h1>Hoşgeldin <%= data[0].username %> <button class="btn btn-outline-danger"><%= data[0].position %></button></h1>
+       <br/>
+       <div class="row">
+       <% if(data[0].position == 'admin'){ %>
+        <button class="col-2 btn btn-outline-danger mr-2"><a href="/specialarea/dashboard/user">Kullanıcılar</a></button>
+        <button class="col-2 btn btn-outline-danger mr-2"><a href="/specialarea/dashboard/stats">Site İstatistiği</a></button>
+        <% } %>
+        <button class="col-2 btn btn-outline-success mr-2"><a href="/specialarea/dashboard/news">Haberler</a></button>
         </div>
+    </div>
 </section>
 <%- include('../partials/footer.ejs', {}) %>
