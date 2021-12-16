@@ -7,6 +7,19 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', async(req, res) => {
+  const stat  = await new Promise((resolve, reject) => {
+    con.query(`SELECT * FROM stats WHERE page = ?`,["index"], function (err, result) {
+        if (err)
+            reject(err);
+        resolve(result);
+    });
+});
+      var updatestat = stat[0].stat+1;
+      con.query(`UPDATE stats SET stat = ? WHERE page = ?`,[updatestat,"index"], function (err, result) {
+        if (err) console.log(err)
+      });
+      
+
   const veri = await new Promise((resolve, reject) => {
     con.query(`SELECT * FROM news ORDER BY id DESC LIMIT 12`, function (err, result) {
         if (err)
@@ -77,6 +90,18 @@ const dünya = await new Promise((resolve, reject) => {
 
 
 router.get('/haber/:id', async(req, res) => {
+  const stat  = await new Promise((resolve, reject) => {
+    con.query(`SELECT * FROM stats WHERE page = ?`,["news"], function (err, result) {
+        if (err)
+            reject(err);
+        resolve(result);
+    });
+});
+      var updatestat = stat[0].stat+1;
+      con.query(`UPDATE stats SET stat = ? WHERE page = ?`,[updatestat,"news"], function (err, result) {
+        if (err) console.log(err)
+      });
+
   var id = req.params.id;
   const veri = await new Promise((resolve, reject) => {
     con.query(`SELECT * FROM news WHERE id = ?`,[id] ,function (err, result) {
@@ -102,6 +127,18 @@ res.render('haber', {
 });
 
 router.get('/category/:ctgry', async(req, res) => {
+  const stat  = await new Promise((resolve, reject) => {
+    con.query(`SELECT * FROM stats WHERE page = ?`,["category"], function (err, result) {
+        if (err)
+            reject(err);
+        resolve(result);
+    });
+});
+      var updatestat = stat[0].stat+1;
+      con.query(`UPDATE stats SET stat = ? WHERE page = ?`,[updatestat,"category"], function (err, result) {
+        if (err) console.log(err)
+      });
+  
   var category = req.params.ctgry;
 
 const news = await new Promise((resolve, reject) => {

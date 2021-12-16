@@ -393,4 +393,35 @@ con.query(`INSERT INTO admin(username,pp,password,position) VALUE(?,?,?,?)`,[req
 res.redirect(`/specialarea/dashboard/user`)
 });
 
+router.get('/dashboard/stats', async(req, res) => {
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+const data = await new Promise((resolve, reject) => {
+  con.query(`SELECT * FROM stats`, function (err, result) {
+      if (err)
+          reject(err);
+      resolve(result);
+  });
+});
+
+  res.render('admin/istatistik', { 
+    title: 'İstatistik - Lihez News',
+    data:data
+  });
+});
+
 module.exports = router;

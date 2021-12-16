@@ -1,0 +1,11 @@
+<%- include('../partials/header.ejs', {}) %>
+<section class="section pt-5 mb-3">
+    <div class="container">
+        <h1>İstatistikler</h1>
+        <br/>
+      <% for(var i = 0; i < data.length; i++){ %>
+          <h5 class="text-uppercase"><%= data[i].page %> : <%= data[i].stat %> </h5><br/>
+     <% } %>
+    </div>
+    </section>
+<%- include('../partials/footer.ejs', {}) %>
