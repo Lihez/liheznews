@@ -4,7 +4,7 @@
   <h2>Yeni Haberler</h2><br/>
   <div class="row">
   <% for(var i = 0; i < data.length; i++){ %>
-  <div class="col-md-3 mb-5 img"> 
+  <div class="col-md-3 mb-3 img"> 
     <a href="/haber/<%= data[i].id %>">   
       <img src="<%= data[i].thumbnail %>" class="card-img-top" alt="thumbnail">
       <h5 class="position-absolute news-text text-light"><%= data[i].title %></h5>
@@ -20,7 +20,7 @@
     <h2>Gündem</h2><br/>
     <div class="row">
     <% for(var i = 0; i < gündem.length; i++){ %>
-    <div class="col-md-3 mb-5 img"> 
+      <div class="col-md-3 mb-3 img"> 
       <a href="/haber/<%= gündem[i].id %>">   
         <img src="<%= gündem[i].thumbnail %>" class="card-img-top" alt="thumbnail">
         <h5 class="position-absolute news-text text-light"><%= gündem[i].title %></h5>
@@ -37,7 +37,7 @@
       <h2>Ekonomi Haberleri</h2><br/>
       <div class="row">
       <% for(var i = 0; i < ekonomi.length; i++){ %>
-      <div class="col-md-3 mb-5 img"> 
+        <div class="col-md-3 mb-3 img"> 
         <a href="/haber/<%= ekonomi[i].id %>">   
           <img src="<%= ekonomi[i].thumbnail %>" class="card-img-top" alt="thumbnail">
           <h5 class="position-absolute news-text text-light"><%= ekonomi[i].title %></h5>
@@ -53,7 +53,7 @@
     <h2>Spor Haberleri</h2><br/>
     <div class="row">
     <% for(var i = 0; i < spor.length; i++){ %>
-    <div class="col-md-3 mb-5 img"> 
+      <div class="col-md-3 mb-3 img"> 
       <a href="/haber/<%= spor[i].id %>">   
         <img src="<%= spor[i].thumbnail %>" class="card-img-top" alt="thumbnail">
         <h5 class="position-absolute news-text text-light"><%= spor[i].title %></h5>
@@ -70,7 +70,7 @@
     <h2>Dünya Haberleri</h2><br/>
     <div class="row">
     <% for(var i = 0; i < dünya.length; i++){ %>
-    <div class="col-md-3 mb-5 img"> 
+      <div class="col-md-3 mb-3 img"> 
       <a href="/haber/<%= dünya[i].id %>">   
         <img src="<%= dünya[i].thumbnail %>" class="card-img-top" alt="thumbnail">
         <h5 class="position-absolute news-text text-light"><%= dünya[i].title %></h5>
@@ -86,7 +86,7 @@
       <h2>Magazin Haberleri</h2><br/>
       <div class="row">
       <% for(var i = 0; i < magazin.length; i++){ %>
-      <div class="col-md-3 mb-5 img"> 
+        <div class="col-md-3 mb-3 img"> 
         <a href="/haber/<%= magazin[i].id %>">   
           <img src="<%= magazin[i].thumbnail %>" class="card-img-top" alt="thumbnail">
           <h5 class="position-absolute news-text text-light"><%= magazin[i].title %></h5>
@@ -103,7 +103,7 @@
       <h2>Teknoloji Haberleri</h2><br/>
       <div class="row">
       <% for(var i = 0; i < teknoloji.length; i++){ %>
-      <div class="col-md-3 mb-5 img"> 
+        <div class="col-md-3 mb-3 img"> 
         <a href="/haber/<%= teknoloji[i].id %>">   
           <img src="<%= teknoloji[i].thumbnail %>" class="card-img-top" alt="thumbnail">
           <h5 class="position-absolute news-text text-light"><%= teknoloji[i].title %></h5>

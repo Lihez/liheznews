@@ -59,6 +59,7 @@ router.get('/dashboard', async(req, res) => {
 
   if(veri[0].username < 1){return res.redirect('/specialarea')}
   if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+  if(veri[0].position ==  "user"){return res.redirect('/specialarea')}
 
     res.render('admin/dashboard', { 
       title: 'Dashboard - Lihez News',
@@ -82,6 +83,7 @@ router.get('/dashboard', async(req, res) => {
 
   if(veri[0].username < 1){return res.redirect('/specialarea')}
   if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+  if(veri[0].position ==  "user"){return res.redirect('/specialarea')}
 
   const news = await new Promise((resolve, reject) => {
     con.query(`SELECT * FROM news ORDER BY id DESC`, function (err, result) {
@@ -92,7 +94,7 @@ router.get('/dashboard', async(req, res) => {
 });
 
     res.render('admin/haberler', { 
-      title: 'Dashboard - Lihez News',
+      title: 'Haberler - Lihez News',
       data:veri,
       news:news
     });
@@ -115,6 +117,7 @@ router.get('/dashboard', async(req, res) => {
 
   if(veri[0].username < 1){return res.redirect('/specialarea')}
   if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+  if(veri[0].position ==  "user"){return res.redirect('/specialarea')}
 
   const news = await new Promise((resolve, reject) => {
     con.query(`SELECT * FROM news WHERE id = ?`,[req.params.id], function (err, result) {
@@ -196,13 +199,12 @@ const veri = await new Promise((resolve, reject) => {
 
 if(veri[0].username < 1){return res.redirect('/specialarea')}
 if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position ==  "user"){return res.redirect('/specialarea')}
 
   res.render('admin/yenihaber', { 
-    title: 'Haberi düzenle - Lihez News',
+    title: 'Yeni Haber - Lihez News',
   });
 });
-
-
 
 router.post('/createnews', async(req, res) => {
   if(req.session.username == undefined){return res.redirect('/specialarea')}
@@ -226,4 +228,122 @@ con.query(`INSERT INTO news(title,content,thumbnail,category) VALUE(?,?,?,?)`,[r
 
 res.redirect(`/specialarea/dashboard/news`)
 });
+
+router.get('/dashboard/user', async(req, res) => {
+
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+const user = await new Promise((resolve, reject) => {
+  con.query(`SELECT * FROM admin`,function (err, result) {
+      if (err)
+          reject(err);
+      resolve(result);
+  });
+});
+
+  res.render('admin/users', { 
+    title: 'Kullanıcılar - Lihez News',
+    data:veri,
+    user:user
+  });
+});
+
+router.get('/dashboard/user/edit/:id', async(req, res) => {
+
+
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+
+const user = await new Promise((resolve, reject) => {
+  con.query(`SELECT * FROM admin WHERE id =?`,[req.params.id],function (err, result) {
+      if (err)
+          reject(err);
+      resolve(result);
+  });
+});
+  res.render('admin/edituser', { 
+    title: 'Kullanıcıyı düzenle - Lihez News',
+    user:user
+  });
+});
+
+
+
+router.post('/edituser', async(req, res) => {
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+con.query(`UPDATE admin SET username = ?, pp = ?, password = ?, position = ? WHERE id = ?`,[req.body.username,req.body.pp,req.body.passowrd,req.body.position, req.body.id], function (err, result) {
+  if (err) console.log(err)
+});
+
+res.redirect(`/specialarea/dashboard/user`)
+});
+
+
+router.post('/deleteuser', async(req, res) => {
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+con.query(`DELETE FROM admin WHERE id = ?`,[req.body.id], function (err, result) {
+if (err) console.log(err)
+});
+
+res.redirect(`/specialarea/dashboard/user`)
+});
+
 module.exports = router;

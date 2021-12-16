@@ -1,0 +1,37 @@
+<%- include('../partials/header.ejs', {}) %>
+<section class="section mt-5">
+    <div class="container">
+        <h1>Kullanıcıyı Düzenle</h1>
+        <form action="/specialarea/edituser" method="POST">
+            <input type="hidden" value="<%= user[0].id %>" id="id" name="id"/>
+            <label for="username">Başlık</label>
+            <input value="<%= user[0].username %>" type="text" name="username" id="username" class="form-control" placeholder="username">
+<br/>       
+            <label for="pp">Profil Fotoğrafı</label>
+            <input type="text" value="<%= user[0].pp %>" name="pp" id="pp" class="form-control" placeholder="pp">
+<br/>     
+            <label for="password">Şifre</label>
+            <input value="<%= user[0].password %>" type="password" name="password" id="password" class="form-control" placeholder="password">  
+<br/>    
+            <label for="position">Yetkisi</label>
+            <select id="position" name="position" class="form-control">
+                <option disabled>Lütfen Yetki Seç</option>
+                <option value="admin">Admin</option>
+                <option value="moderator">Moderatör</option>
+                <option value="writer">Yazar</option>
+                <option value="user">Kullanıcı</option>
+           </select>
+<br/><br/>     
+            <input type="submit" value="Düzenle" class="btn btn-outline-success">            
+        </form>
+        <hr/>
+        <form action="/specialarea/deleteuser" method="POST">           
+            <input type="hidden" value="<%= user[0].id %>" id="id" name="id"/>
+            <input type="submit" value="Kullanıcıyı Sil" class="btn btn-outline-danger">            
+        </form>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    </section>
+<%- include('../partials/footer.ejs', {}) %>

@@ -1,0 +1,19 @@
+<%- include('../partials/header.ejs', {}) %>
+<section class="section pt-5 mb-3">
+    <div class="container">
+        <h1>Kullanıcılar <button class="btn btn-outline-danger"><%= data[0].position %></button></h1>
+        <br/>
+      <div class="row">
+      <% for(var i = 0; i < user.length; i++){ %>
+  <div class="col-md-3 mb-5 img"> 
+        <a href="/specialarea/dashboard/user/edit/<%= user[i].id %>">   
+          <img src="<%= user[i].pp %>" class="card-img-top" alt="thumbnail">
+          <h5 class="position-absolute news-text text-light"><%= user[i].username %></h5>
+        </a>
+        </div>
+     <% } %>
+    </div>
+    <a href="/specialarea/dashboard/user/new"><button class="btn btn-outline-dark">Yeni Kullanıcı</button></a>
+    </div>
+    </section>
+<%- include('../partials/footer.ejs', {}) %>
