@@ -101,5 +101,24 @@ res.render('haber', {
 });
 });
 
+router.get('/category/:ctgry', async(req, res) => {
+  var category = req.params.ctgry;
+
+const news = await new Promise((resolve, reject) => {
+  con.query(`SELECT * FROM news WHERE category = ? ORDER BY id DESC LIMIT 200`,[category], function (err, result) {
+      if (err)
+          reject(err);
+      resolve(result);
+  });
+});
+console.log(news)
+res.render('category', { 
+  title: `${category} - Lihez News`,
+  news: news,
+  ctgry: category
+});
+});
+
+
 
 module.exports = router;

@@ -346,4 +346,51 @@ if (err) console.log(err)
 res.redirect(`/specialarea/dashboard/user`)
 });
 
+
+router.get('/dashboard/user/new', async(req, res) => {
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+  res.render('admin/yenihaber', { 
+    title: 'Yeni Kullanıcı - Lihez News',
+  });
+});
+
+router.post('/createuser', async(req, res) => {
+  if(req.session.username == undefined){return res.redirect('/specialarea')}
+  if(req.session.username < 1){return res.redirect('/specialarea')}
+  if(req.session.passowrd < 1){return res.redirect('/specialarea')}
+
+const veri = await new Promise((resolve, reject) => {
+      con.query(`SELECT * FROM admin WHERE username = ?`, [req.session.username], function (err, result) {
+          if (err)
+              reject(err);
+          resolve(result);
+      });
+  });
+
+if(veri[0].username < 1){return res.redirect('/specialarea')}
+if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
+if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
+
+con.query(`INSERT INTO admin(username,pp,password,category) VALUE(?,?,?,?)`,[req.body.title,req.body.content,req.body.thumbnail,req.body.category], function (err, result) {
+  if (err) console.log(err)
+});
+
+res.redirect(`/specialarea/dashboard/user`)
+});
+
 module.exports = router;
