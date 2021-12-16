@@ -364,7 +364,7 @@ if(veri[0].username < 1){return res.redirect('/specialarea')}
 if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
 if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
 
-  res.render('admin/yenihaber', { 
+  res.render('admin/newuser', { 
     title: 'Yeni Kullanıcı - Lihez News',
   });
 });
@@ -386,7 +386,7 @@ if(veri[0].username < 1){return res.redirect('/specialarea')}
 if(req.session.password != veri[0].password){return res.redirect('/specialarea')}
 if(veri[0].position !=  "admin"){return res.redirect('/specialarea')}
 
-con.query(`INSERT INTO admin(username,pp,password,category) VALUE(?,?,?,?)`,[req.body.title,req.body.content,req.body.thumbnail,req.body.category], function (err, result) {
+con.query(`INSERT INTO admin(username,pp,password,position) VALUE(?,?,?,?)`,[req.body.username,req.body.pp,req.body.password,req.body.position], function (err, result) {
   if (err) console.log(err)
 });
 
