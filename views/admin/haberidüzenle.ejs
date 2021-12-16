@@ -1,0 +1,40 @@
+<%- include('../partials/header.ejs', {}) %>
+<section class="section mt-5">
+    <div class="container">
+        <h1>Haberi Düzenle</h1>
+        <form action="/specialarea/editnews" method="POST">
+            <input type="hidden" value="<%= news[0].id %>" id="id" name="id"/>
+            <label for="title">Başlık</label>
+            <input value="<%= news[0].title %>" type="text" name="title" id="title" class="form-control" placeholder="title">
+<br/>       
+            <label for="content">İçerik</label>
+            <textarea name="content" id="content" class="form-control"><%= news[0].content %></textarea>
+            <small class="form-text text-muted">HTML desteklenmektedir!</small>
+<br/>     
+            <label for="thumbnail">Haberin Resmi</label>
+            <input value="<%= news[0].thumbnail %>" type="text" name="thumbnail" id="thumbnail" class="form-control" placeholder="thumbnail">  
+<br/>    
+            <label for="category">Kategorisi</label>
+            <select id="category" name="category" class="form-control">
+                <option disabled>Lütfen Kategori Seç</option>
+                <option value="spor">Spor</option>
+                <option value="magazin">Magazin</option>
+                <option value="dünya">Dünya</option>
+                <option value="ekonomi">Ekonomi</option>
+                <option value="teknoloji">Teknoloji</option>
+                <option value="gündem">Gündem</option>
+           </select>
+<br/><br/>     
+            <input type="submit" value="Düzenle" class="btn btn-outline-success">            
+        </form>
+        <hr/>
+        <form action="/specialarea/deletenews" method="POST">           
+            <input type="hidden" value="<%= news[0].id %>" id="id" name="id"/>
+            <input type="submit" value="Haberi Sil" class="btn btn-outline-danger">            
+        </form>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    </section>
+<%- include('../partials/footer.ejs', {}) %>

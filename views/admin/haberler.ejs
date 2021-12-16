@@ -5,13 +5,14 @@
       <div class="row">
       <% for(var i = 0; i < news.length; i++){ %>
       <div class="col-md-3 mb-5 img"> 
-        <a href="/specialarea/dashboard/news/<%= news[i].id %>">   
+        <a href="/specialarea/dashboard/news/edit/<%= news[i].id %>">   
           <img src="<%= news[i].thumbnail %>" class="card-img-top" alt="thumbnail">
           <h5 class="position-absolute news-text text-light"><%= news[i].title %></h5>
         </a>
         </div>
      <% } %>
     </div>
+    <a href="/specialarea/dashboard/news/new"><button class="btn btn-outline-dark">Yeni Haber</button></a>
     </div>
     </section>
 <%- include('../partials/footer.ejs', {}) %>

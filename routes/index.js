@@ -64,7 +64,7 @@ const dünya = await new Promise((resolve, reject) => {
 });
 
   res.render('index', { 
-    title: 'Home - Lehiz News',
+    title: 'Home - Lihez News',
     data: veri,
     spor:spor,
     ekonomi:ekonomi,
@@ -95,7 +95,7 @@ const news = await new Promise((resolve, reject) => {
 });
 
 res.render('haber', { 
-  title: 'Haber - Lehiz News',
+  title: 'Haber - Lihez News',
   news: news,
   data:veri
 });
