@@ -5,10 +5,10 @@ Lihez News `Lihez Software Services` tarafından hazırlanan açık kaynak kodlu
 # SQL Tabloları
 
 `news`
-<a href="./public/images/sql1.png"></a>
+<img src="./public/images/sql1.png">
 
 `admin`
-<a href="./public/images/sql2.png"></a>
+<img src="./public/images/sql2.png">
 
 `stats`
-<a href="./public/images/sql3.png"></a>
+<img src="./public/images/sql3.png">
